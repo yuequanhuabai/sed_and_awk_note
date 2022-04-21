@@ -1,0 +1,42 @@
+sed [options] {sed-commands} {input-file}
+
+sed -n 'p' /etc/passwd
+
+
+sed [options] -f {sed-commands-in-a-file} {input-file}
+
+sed -n -f test-script.sed /etc/passwd
+
+
+sed -n -e '/^root/ p' -e '^nobody/ p' /etc/passwd
+
+
+也可以用反斜杠隔开
+
+sed -n \
+-e '/^root/ p' \
+-e '/^nobody/ p' \
+/etc/passwd
+
+
+还可以用大括号把命令集括在内部：
+
+sed [options] '{
+sed-command-1
+sed-command-2
+}' input-file
+
+sed -n '{
+/^root/ p
+/^nobody/ p
+}' /etc/passwd
+
+
+Sed Substitute Command Syntax
+
+sed '[address-range | pattern-range] s/original-string/replacement-string /[substitute-flags] inputfile
+
+sed '/Sales/s/Manager/Director/' employee.txt
+
+sed 's/a/A/' employee.txt 替换当前行的第一个a为大写A
+sed 's/a/A/g' employee.txt 替换当前行的所有a为大写A
